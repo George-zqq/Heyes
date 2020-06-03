@@ -1,6 +1,17 @@
 # -*- coding : utf-8
 
 import requests
+from flask import Response, Flask
+from prometheus_client import Enum, CollectorRegistry, generate_latest
+
+app = Flask(__name__)
+
+REGISTRY = CollectorRegistry(auto_describe=False)
+
+e = Enum('namenode_state', 'namenode status', states=['running', 'stopped'])
+e.state('running')
+
+
 
 
 class hbase_exporter(object):
